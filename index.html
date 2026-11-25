@@ -163,6 +163,8 @@ button:disabled{opacity:.5;box-shadow:0 2px 0 var(--sh)}
 @keyframes ir-drop{to{opacity:1;transform:none}}
 @keyframes ir-blink{50%{opacity:.45}}
 @media (prefers-reduced-motion:reduce){#intro *{animation-duration:.01s!important;animation-delay:0s!important}#intro p{animation:none;opacity:1}}
+.ft{margin:22px 0 4px;padding-top:10px;border-top:2px dashed rgba(243,233,207,.25);text-align:center;font-size:.78rem;line-height:1.6;color:var(--bgfg);opacity:.75}
+.ft b{font-family:"Jua",sans-serif;font-weight:400;color:var(--gold)}
 </style>
 </head>
 <body>
@@ -185,9 +187,7 @@ button:disabled{opacity:.5;box-shadow:0 2px 0 var(--sh)}
 <h2><span style="animation-delay:2.45s">타</span><span style="animation-delay:2.52s">워</span><span style="animation-delay:2.59s">&nbsp;</span><span style="animation-delay:2.66s">디</span><span style="animation-delay:2.73s">펜</span><span style="animation-delay:2.80s">스</span></h2>
 <p>화면을 누르면 시작해요</p>
 </div>
-<script>(()=>{const el=document.getElementById('intro');const sv=el.querySelector('svg');try{sv.pauseAnimations();}catch(e){}requestAnimationFrame(()=>requestAnimationFrame(()=>{try{sv.setCurrentTime(0);sv.unpauseAnimations();}catch(e){}el.classList.add('go');}));let seen=false;try{seen=sessionStorage.getItem('tdIntro')=='1';sessionStorage.setItem('tdIntro','1');}catch(e){}
- if(seen){el.remove();return;}
- let done=false;const close=()=>{if(done)return;done=true;el.classList.add('out');setTimeout(()=>el.remove(),600);};
+<script>(()=>{const el=document.getElementById('intro');const sv=el.querySelector('svg');try{sv.pauseAnimations();}catch(e){}requestAnimationFrame(()=>requestAnimationFrame(()=>{try{sv.setCurrentTime(0);sv.unpauseAnimations();}catch(e){}el.classList.add('go');})); let done=false;const close=()=>{if(done)return;done=true;el.classList.add('out');setTimeout(()=>el.remove(),600);};
  el.addEventListener('pointerdown',close);addEventListener('keydown',close,{once:true});setTimeout(close,matchMedia('(prefers-reduced-motion: reduce)').matches?1400:4600);})();</script>
 
 <main>
@@ -209,8 +209,11 @@ button:disabled{opacity:.5;box-shadow:0 2px 0 var(--sh)}
 <div class="info" id="av" hidden style="margin-top:8px"></div>
 <div class="info lb" id="lb"><div class="lbh"><strong>온라인 랭킹</strong><input id="nick" maxlength="12" placeholder="닉네임을 입력하세요" aria-label="닉네임" autocomplete="off"><button id="lbr" type="button">새로고침</button></div><div class="lbt" id="lbt"></div><div id="lbv"></div></div>
 </div></div>
+<footer class="ft"><div>타워 디펜스 <b id="ver"></b> · 업데이트 <span id="vdate"></span></div><div>© 2026 2718challenger. All rights reserved.</div></footer>
 </main>
 <script>
+const VERSION='v1.5.1',VDATE='2026-11-25';
+document.getElementById('ver').textContent=VERSION;document.getElementById('vdate').textContent=VDATE;
 const C=document.getElementById('c'),x=C.getContext('2d');
 const T=40,W=16,H=10,$=id=>document.getElementById(id);
 const MAPS=[
